@@ -33,8 +33,8 @@ def parse_qrcode(path):
 
 
 if __name__ == '__main__':
-    print(png_crc32('temp/newpng.png'))
-    print(png_crc32('temp/1116722-20180930112354057-2055962329.png'))
+    print(png_crc32('../temp/crc32_test.png'))
+    print(png_crc32('../temp/1116722-20180930112354057-2055962329.png'))
     b = '00000001001110110101010000000' \
         '01111101010100111011110111110' \
         '01000101110010011111010100010' \
@@ -64,9 +64,9 @@ if __name__ == '__main__':
         '01000101011010011001011011011' \
         '01111101000001011000110110100' \
         '00000001111100001100011110011'
-    # bin2qr(b, 29, 'temp/class10.png')
-    print(parse_qrcode('temp/class10.png'))
-    print(parse_qrcode('temp/1116722-20180930112354057-2055962329.png'))
+    bin2qr(b, 29, '../temp/class10.png')
+    print(parse_qrcode('../temp/class10.png'))
+    print(parse_qrcode('../temp/1116722-20180930112354057-2055962329.png'))
 
 
 

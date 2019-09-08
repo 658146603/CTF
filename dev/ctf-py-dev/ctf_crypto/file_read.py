@@ -7,4 +7,4 @@ def b2h(path):
 
 
 if __name__ == "__main__":
-    pass
+    print(b2h('../temp/crc32_test.png'))

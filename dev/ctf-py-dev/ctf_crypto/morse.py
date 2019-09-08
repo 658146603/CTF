@@ -51,5 +51,5 @@ def decode(morse_code):
 
 if __name__ == "__main__":
     print(decode('.... .- .... .... .... .- .... .- .... .- .... .- .... .- .... '))
-    print('hello')
+    print(encode('ahhahahah'))
 

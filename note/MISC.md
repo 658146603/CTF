@@ -78,4 +78,21 @@ MIDI (mid) | 4D546864
 
 
 
-## `s`
+
+## `文件分离`
+```sh
+# app
+apt-get install foremost
+apt-get install binwalk
+
+
+# sh
+dd if=<raw-file> of=<new-file> skip=<address(int)> bs=1
+foremost <file>
+binwalk -e[M] <file>
+```
+
+
+# `JPEG 图像特征`
+- START :: `FF D8`, END :: `FF D9`
+- 
