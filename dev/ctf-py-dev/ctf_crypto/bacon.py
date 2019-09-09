@@ -15,8 +15,8 @@ second_cipher = ['aaaaa', 'aaaab', 'aaaba', 'aaabb', 'aabaa', 'aabab', 'aabba', 
 
 def encode():
     string = input('please input string to encode:\n')
-    e_string1 = ""
-    e_string2 = ""
+    e_string1 = ''
+    e_string2 = ''
     for index in string:
         for i in range(0, 26):
             if index == alphabet[i]:
@@ -31,8 +31,8 @@ def encode():
 def decode():
     e_string = input('please input string to decode:\n')
     e_array = re.findall('.{5}', e_string)
-    d_string1 = ""
-    d_string2 = ""
+    d_string1 = ''
+    d_string2 = ''
     for index in e_array:
         for i in range(0, 26):
             if index == first_cipher[i]:

@@ -1,5 +1,6 @@
+# 爆破
 def d1(cipher):
-    print('..... [d1] CIPHER=' + cipher + ' .....')
+    print('[d1] CIPHER=' + cipher)
     cipher_len = len(cipher)
     n_list = []
     for i in range(2, cipher_len):
@@ -32,7 +33,7 @@ def d1(cipher):
 
 # 只计算可整除的N
 def d0(cipher):
-    print('..... [d0] CIPHER=' + cipher + ' .....')
+    print('[d0] CIPHER=' + cipher)
     cipher_len = len(cipher)
     n_list = []
     for i in range(2, cipher_len):
@@ -58,3 +59,5 @@ if __name__ == '__main__':
     d1('15a26b37c48')
     d1('16c27384a5b')
     d1('Gnsol}elhranyakgimri{uednssa-g1onwf8')
+    d1('lk2j9Gh}AgfY4ds-a6QW1#k5ER_T[cvLbV7nOm3ZeX{CMt8SZo]U')
+    d0('lk2j9Gh}AgfY4ds-a6QW1#k5ER_T[cvLbV7nOm3ZeX{CMt8SZo]U')

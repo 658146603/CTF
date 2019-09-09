@@ -1,7 +1,6 @@
 package ctf
 
-import ctf.crypto.Brainfuck
-import ctf.crypto.NetUtils
+import kotlin.experimental.xor
 
 fun main() {
 //    val str = readLine()
@@ -34,11 +33,13 @@ fun main() {
 //        }
 //    }).run()
 
-    val a = arrayOf<Byte>(21, -93, -68, -94, 86, 117, -19, -68, -92, 33,
-            50, 118, 16, 13, 1, -15, -13, 3, 4, 103,
-            -18, 81, 30, 68, 54, -93, 44, -23, 93, 98,
-            5, 59)
-
-    print(a)
+    val s = byteArrayOf(
+            113, 123, 118, 112, 108, 94, 99, 72, 38, 68,
+            72, 87, 89, 72, 36, 118, 100, 78, 72, 87,
+            121, 83, 101, 39, 62, 94, 62, 38, 107, 115,
+            106)
+    for (b in s) {
+        print(b.xor(0x17).toChar())
+    }
 
 }

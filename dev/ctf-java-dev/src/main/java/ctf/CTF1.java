@@ -79,9 +79,9 @@ public class CTF1 {
 //        return new String(arrayOfByte2);
 //    }
 
-    public static String re() {
-
-    }
+//    public static void re() {
+//
+//    }
 
 
 }
