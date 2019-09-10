@@ -6,9 +6,11 @@ temp/
 *.iml
 dev/ctf-py-dev/venv/
 dev/ctf-py-dev/.vs/
+dev/ctf-py-dev/.idea/
 dev/ctf-java-dev/.idea/
 dev/ctf-java-dev/lib/
-dev/ctf-java-dev/target
-dev/ctf-py-dev/.idea/
+dev/ctf-java-dev/target/
+dev/ctf-java-dev/bin/
 .vscode/
 *.pyc
+

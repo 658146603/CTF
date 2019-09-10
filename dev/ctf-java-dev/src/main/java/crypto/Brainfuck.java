@@ -1,4 +1,4 @@
-package ctf.crypto;
+package crypto;
 
 import java.util.HashMap;
 import java.util.Stack;

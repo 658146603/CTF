@@ -1,22 +1,24 @@
-package ctf.crypto
+package web
 
-import okhttp3.*
+import okhttp3.FormBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.internal.closeQuietly
 import java.io.File
-import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
-object NetUtils {
+object Request {
     fun post(url: String, params: HashMap<String, String>): String {
         try {
             val client = OkHttpClient.Builder()
-                .connectTimeout(5, TimeUnit.SECONDS)
-                .writeTimeout(5, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .build()
+                    .connectTimeout(5, TimeUnit.SECONDS)
+                    .writeTimeout(5, TimeUnit.SECONDS)
+                    .readTimeout(10, TimeUnit.SECONDS)
+                    .build()
             val builder = FormBody.Builder()
             for (item in params) {
                 builder.add(item.key, item.value)
@@ -28,7 +30,7 @@ object NetUtils {
             if (response.isSuccessful) {
                 val result = response.body?.string()
                 response.closeQuietly()
-                return result?:""
+                return result ?: ""
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -40,13 +42,13 @@ object NetUtils {
     fun get(url: String): String {
         try {
             val client = OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS).build()
+                    .readTimeout(10, TimeUnit.SECONDS).build()
             val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
             if (response.isSuccessful) {
                 val result = response.body?.string()
                 response.closeQuietly()
-                return result?:""
+                return result ?: ""
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -58,7 +60,7 @@ object NetUtils {
     fun postMultipleForm(url: String, map: Map<String, String>, files: ArrayList<File>, name: String): String {
         try {
             val client = OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS).readTimeout(5, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS).build()
+                    .writeTimeout(30, TimeUnit.SECONDS).build()
             val requestBody = MultipartBody.Builder().setType(MultipartBody.FORM)
 
             for (file in files) {
@@ -76,7 +78,7 @@ object NetUtils {
             if (response.isSuccessful) {
                 val result = response.body?.string()
                 response.closeQuietly()
-                return result?:""
+                return result ?: ""
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -85,7 +87,4 @@ object NetUtils {
         return ""
     }
 
-
-
-    private const val TAG = "NetUtils"
 }
