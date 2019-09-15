@@ -40,8 +40,8 @@ def encode(msg):
 # 将摩斯密码还原成字符串
 def decode(morse_code):
     message = ''
-    list = morse_code.split(' ')
-    for s in list:
+    _list = morse_code.split(' ')
+    for s in _list:
         if s == '':
             message += ' '
         else:
@@ -52,4 +52,5 @@ def decode(morse_code):
 if __name__ == "__main__":
     print(decode('.... .- .... .... .... .- .... .- .... .- .... .- .... .- .... '))
     print(encode('ahhahahah'))
+    print(decode('..-. .-.. .- --. ..... ..--- ..--- ----- .---- ---.. -.. -.... -.... ..... ...-- ---.. --... -.. .---- -.. .- ----. ...-- .---- ---.. .---- ..--- -... --... --... --... -.... ...-- ....- .---- -----'))
 

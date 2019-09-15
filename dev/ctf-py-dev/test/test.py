@@ -1,9 +1,11 @@
 import libnum
-import base64
+# import base64
 import hashlib
 import binascii
-from urllib import parse
-from ctf_crypto import file_read
+# from urllib import parse
+# from ctf_crypto import file_read
+# from ctf_web import request
+import requests
 
 if __name__ == '__main__':
     # sha256 = hashlib.sha256()
@@ -20,15 +22,17 @@ if __name__ == '__main__':
     # print(base64.b64decode(b))
     # s = ""
 
-    a = [0x48, 0x5D, 0x8D, 0x24, 0x84, 0x27, 0x99, 0x9F, 0x54, 0x18, 0x1E, 0x69, 0x7E, 0x33, 0x15, 0x72, 0x8D, 0x33,
-         0x24, 0x63, 0x21, 0x54, 0x0C, 0x78, 0x78, 0x78, 0x78, 0x78, 0x1B]
+    # a = [0x48, 0x5D, 0x8D, 0x24, 0x84, 0x27, 0x99, 0x9F, 0x54, 0x18, 0x1E, 0x69, 0x7E, 0x33, 0x15, 0x72, 0x8D, 0x33,
+    #      0x24, 0x63, 0x21, 0x54, 0x0C, 0x78, 0x78, 0x78, 0x78, 0x78, 0x1B]
+    #
+    # b = []
+    # c = 'lk2j9Gh}AgfY4ds-a6QW1#k5ER_T[cvLbV7nOm3ZeX{CMt8SZo]U'
+    # s = ''
+    # for i in range(len(a)):
+    #     b.append(int(a[i] / 3 - 2))
+    #     for j in range(len(b)):
+    #         s += c[b[j]]
+    raw = libnum.s2b('WELCOMETOCFF')
+    print(raw)
+    print(libnum.b2s('01010010'))
 
-    b = []
-    c = 'lk2j9Gh}AgfY4ds-a6QW1#k5ER_T[cvLbV7nOm3ZeX{CMt8SZo]U'
-    s = ''
-    for i in range(len(a)):
-        b.append(int(a[i] / 3 - 2))
-        for j in range(len(b)):
-            s += c[b[j]]
-
-    print(s)
