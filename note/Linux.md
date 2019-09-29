@@ -13,4 +13,4 @@ strings <file>
 
 [global]
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-```
+```  

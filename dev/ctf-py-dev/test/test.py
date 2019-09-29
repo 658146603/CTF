@@ -1,5 +1,5 @@
 import libnum
-# import base64
+import base64
 import hashlib
 import binascii
 # from urllib import parse
@@ -32,7 +32,9 @@ if __name__ == '__main__':
     #     b.append(int(a[i] / 3 - 2))
     #     for j in range(len(b)):
     #         s += c[b[j]]
-    raw = libnum.s2b('WELCOMETOCFF')
-    print(raw)
-    print(libnum.b2s('01010010'))
+    # raw = libnum.s2b('WELCOMETOCFF')
+    # print(raw)
+    # print(libnum.b2s('01010010'))
+    print(str(base64.b32decode('GUYDIMZVGQ2DMN3CGRQTONJXGM3TINLGG42DGMZXGM3TINLGGY4DGNBXGYZTGNLGGY3DGNBWMU3WI===')))
+    print(base64.b16decode('504354467b4a7573745f743373745f683476335f66346e7d'))
 
