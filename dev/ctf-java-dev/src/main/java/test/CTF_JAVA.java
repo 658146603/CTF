@@ -4,7 +4,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class CTF_JAVA {
-    private static byte[] b = {23, 22, 26, 26, 25, 25, 25, 26, 27, 28, 30, 30, 29, 30, 32, 32};
+    private static final byte[] b = {23, 22, 26, 26, 25, 25, 25, 26, 27, 28, 30, 30, 29, 30, 32, 32};
+
+    public static int i = 64 ^ 0x20;
 
     public static String checkSN(String paramString1) {
         if (paramString1 != null) {
@@ -84,7 +86,7 @@ public class CTF_JAVA {
             -27, -20, -118, 100, -76, 70, -49, -39, -27, -106,
             -13, -108, 115, -87, -1, -22, -53, 21, -100, 124,
             -95, -40, 62, -69, 29, 56, -53, 85, -48, 25,
-            37, -78, 11, -110, -24, -120, -82, 6, -94, -101 };
+            37, -78, 11, -110, -24, -120, -82, 6, -94, -101};
 
     private static final byte[] q = {
             -57, -90, 53, -71, -117, 98, 62, 98, 101, -96,
@@ -98,16 +100,16 @@ public class CTF_JAVA {
             -126, -62, -23, 11, -39, 70, 14, 59, -101, -39,
             -124, 91, -109, 102, -49, 21, 105, 0, 37, Byte.MIN_VALUE,
             -57, 117, 110, -115, -86, 56, 25, -46, -55, 7,
-            -125, 109, 76, 104, -15, 82, -53, 18, -28, -24 };
+            -125, 109, 76, 104, -15, 82, -53, 18, -28, -24};
 
     static String i() {
         byte b2 = 0;
         byte[] arrayOfByte1 = new byte[p.length];
         byte b1;
         for (b1 = 0; b1 < arrayOfByte1.length; b1++)
-            arrayOfByte1[b1] = (byte)(p[b1] ^ q[b1]);
+            arrayOfByte1[b1] = (byte) (p[b1] ^ q[b1]);
         byte b = arrayOfByte1[0];
-        for (b1 = 0; arrayOfByte1[b + b1] != 0; b1++);
+        for (b1 = 0; arrayOfByte1[b + b1] != 0; b1++) ;
         byte[] arrayOfByte2 = new byte[b1];
         while (b2 < b1) {
             arrayOfByte2[b2] = arrayOfByte1[b + b2];

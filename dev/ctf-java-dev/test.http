@@ -1,0 +1,4 @@
+GET https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?client_id=d6dd321e-a746-4d73-ab27-81b01b802065&response_type=code&redirect_uri=msauth%3A%2F%2Fxyz.nfcv.nearshare%2FQtxWSp2PV8YTJKCrC0JFv9bgMYk%253D&response_mode=query&scope=email%20user.read%20profile&state=12345
+
+###
+GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=6731de76-14a6-49ae-97bc-6eba6914391e&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F&response_mode=query&scope=offline_access%20user.read%20mail.read&state=12345

