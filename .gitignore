@@ -13,4 +13,4 @@ dev/ctf-java-dev/target/
 dev/ctf-java-dev/bin/
 .vscode/
 *.pyc
-
+share/
