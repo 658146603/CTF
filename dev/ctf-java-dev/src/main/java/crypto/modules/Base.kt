@@ -1,6 +1,7 @@
 package crypto.modules
 
-import okhttp3.internal.and
+import java.net.URLDecoder
+import java.net.URLEncoder
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.security.MessageDigest
@@ -107,3 +108,9 @@ val ByteArray.hex: String
 
 val String.file: ByteArray
     get() = Files.readAllBytes(Paths.get(this))
+
+val String.urlencode: String
+    get() = URLEncoder.encode(this, Charsets.UTF_8)
+
+val String.urldecode: String
+    get() = URLDecoder.decode(this, Charsets.UTF_8)
