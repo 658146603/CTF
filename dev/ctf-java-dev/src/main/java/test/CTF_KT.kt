@@ -5,7 +5,7 @@ import kotlin.experimental.xor
 
 fun main() {
     println("helloworld")
-    println(CTF_JAVA.i())
+//    println(CTF_JAVA.i())
 
     val flag = "hacking_for_fun}".toCharArray()
     flag.forEachIndexed { i, c ->

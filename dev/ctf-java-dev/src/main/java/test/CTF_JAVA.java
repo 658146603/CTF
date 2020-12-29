@@ -1,122 +1,53 @@
 package test;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Random;
 
 public class CTF_JAVA {
-    private static final byte[] b = {23, 22, 26, 26, 25, 25, 25, 26, 27, 28, 30, 30, 29, 30, 32, 32};
 
-    public static int i = 64 ^ 0x20;
-
-    public static String checkSN(String paramString1) {
-        if (paramString1 != null) {
-            try {
-                Object localObject = MessageDigest.getInstance("MD5");
-                ((MessageDigest) localObject).reset();
-                ((MessageDigest) localObject).update(paramString1.getBytes());
-                paramString1 = toHexString(((MessageDigest) localObject).digest(), "");
-                localObject = new StringBuilder();
-                int i = 0;
-                while (i < paramString1.length()) {
-                    ((StringBuilder) localObject).append(paramString1.charAt(i));
-                    i += 2;
+    /**
+     * 已知e，d，n，分解n
+     *
+     * @param e 公钥e
+     * @param d 私钥d
+     * @param n 模数n
+     * @return p，q
+     */
+    public static BigInteger[] attack(BigInteger e, BigInteger d, BigInteger n) {
+        // p,q
+        BigInteger[] result = new BigInteger[2];
+        // k=de-1
+        BigInteger k = d.multiply(e).subtract(BigInteger.ONE);
+        Random random = new Random();
+        while (true) {
+            BigInteger g = new BigInteger(n.bitLength(), random);
+            // 选择随机数g，1<g<n
+            while (g.compareTo(BigInteger.ONE) <= 0 || g.compareTo(n) >= 0)
+                g = new BigInteger(n.bitLength(), random);
+            BigInteger k1 = k;
+            // 计算t和g^(k/2^i)的过程合在一起
+            while (k1.mod(BigInteger.TWO).equals(BigInteger.ZERO)) {
+                // 如果k为偶数，就除以2
+                k1 = k1.shiftRight(1);
+                // 此时g^(k/2^i)=g^k1
+                BigInteger x = g.modPow(k1, n);
+                // 计算y=gcd(x−1,n)，直接赋值给p(result[0])
+                result[0] = x.subtract(BigInteger.ONE).gcd(n);
+                // 如果x>1且y=gcd(x−1,n)>1
+                if (x.compareTo(BigInteger.ONE) > 0 && result[0].compareTo(BigInteger.ONE) > 0) {
+                    result[1] = n.divide(result[0]);
+                    return result;
                 }
-                paramString1 = ((StringBuilder) localObject).toString();
-                return ("flag{" + paramString1 + "}");
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
             }
         }
-
-        return "";
     }
 
-    private static String toHexString(byte[] paramArrayOfByte, String paramString) {
-        StringBuilder localStringBuilder = new StringBuilder();
-        int j = paramArrayOfByte.length;
-        int i = 0;
-        while (i < j) {
-            String str = Integer.toHexString(paramArrayOfByte[i] & 0xFF);
-            if (str.length() == 1)
-                localStringBuilder.append('0');
-            localStringBuilder.append(str).append(paramString);
-            i += 1;
-        }
-        return localStringBuilder.toString();
+    public static void main(String[] args) {
+        BigInteger e = new BigInteger("3683191938452247871641914583009119792552938079110383367782698429399084083048335018186915282465581498846777124014232879019914546010406868697694661244001972931366227108140590201194336470785929194895915077935083045957890179080332615291089360169761324533970721460473221959270664692795701362942487885620152952927112838769014944652059440137350285198702402612151501564899791870051001152984815689187374906618917967106000628810361686645504356294175173529719443860140795170776862320812544438211122891112138748710073230404456268507750721647637959502454394140328030018450883598342764577147457231373121223878829298942493059211583");
+        BigInteger d = new BigInteger("1779217788383673416690068487595062922771414230914791138743960472798057054853883175313487137767631446949382388070798609545617543049566741624609996040273727");
+        BigInteger n = new BigInteger("24493816160588971749455534346389861269947121809901305744877671102517333076424951483888863597563544011725032585417200878377314372325231470164799594965293350352923195632229495874587039720317200655351788887974047948082357232348155828924230567816817425104960545706688263839042183224681231800805037117758927837949941052360649778743187012198508745207332696876463490071925421229447425456903529626946628855874075846839745388326224970202749994059533831664092151570836853681204646481502222112116971464211748086292930029540995987019610460396057955900244074999111267618452967579699626655472948383601391620012180211885979095636919");
+        System.out.println(Arrays.toString(attack(e, d, n)));
     }
-
-    public static String getFlag() {
-        byte[] arrayOfByte2 = new byte[16];
-        for (int i = 0; i < 16; i++) {
-            arrayOfByte2[i] = (byte) (i + 122 - 2 * b[i]);
-        }
-
-        return new String(arrayOfByte2);
-    }
-
-    public static String check(String paramString) {
-        byte[] arrayOfByte1 = paramString.getBytes();
-        byte[] arrayOfByte2 = new byte[16];
-        int i = 0;
-        while (i < 16) {
-            arrayOfByte2[i] = ((byte) ((arrayOfByte1[i] + b[i]) % 61));
-            i += 1;
-        }
-        i = 0;
-        while (i < 16) {
-            arrayOfByte2[i] = ((byte) (arrayOfByte2[i] * 2 - i));
-            i += 1;
-        }
-        return new String(arrayOfByte2);
-    }
-
-    public static void re() {
-
-    }
-
-    private static final byte[] p = {
-            -40, -62, 107, 66, -126, 103, -56, 77, 122, -107,
-            -24, -127, 72, -63, -98, 64, -24, -5, -49, -26,
-            79, -70, -26, -81, 120, 25, 111, -100, -23, -9,
-            122, -35, 66, -50, -116, 3, -72, 102, -45, -85,
-            0, 126, -34, 62, 83, -34, 48, -111, 61, -9,
-            -51, 114, 20, 81, -126, -18, 27, -115, -76, -116,
-            -48, -118, -10, -102, -106, 113, -104, 98, -109, 74,
-            48, 47, -100, -88, 121, 22, -63, -32, -20, -41,
-            -27, -20, -118, 100, -76, 70, -49, -39, -27, -106,
-            -13, -108, 115, -87, -1, -22, -53, 21, -100, 124,
-            -95, -40, 62, -69, 29, 56, -53, 85, -48, 25,
-            37, -78, 11, -110, -24, -120, -82, 6, -94, -101};
-
-    private static final byte[] q = {
-            -57, -90, 53, -71, -117, 98, 62, 98, 101, -96,
-            36, 110, 77, -83, -121, 2, -48, 94, -106, -56,
-            -49, -80, -1, 83, 75, 66, -44, 74, 2, -36,
-            -42, -103, 6, -115, -40, 69, -107, 85, -78, -49,
-            54, 78, -26, 15, 98, -70, 8, -90, 94, -61,
-            -84, 64, 112, 51, -29, -34, 126, -21, -126, -71,
-            -31, -24, -60, -2, -81, 66, -84, 85, -91, 10,
-            84, 70, -8, -63, 26, 126, -76, -104, -123, -71,
-            -126, -62, -23, 11, -39, 70, 14, 59, -101, -39,
-            -124, 91, -109, 102, -49, 21, 105, 0, 37, Byte.MIN_VALUE,
-            -57, 117, 110, -115, -86, 56, 25, -46, -55, 7,
-            -125, 109, 76, 104, -15, 82, -53, 18, -28, -24};
-
-    static String i() {
-        byte b2 = 0;
-        byte[] arrayOfByte1 = new byte[p.length];
-        byte b1;
-        for (b1 = 0; b1 < arrayOfByte1.length; b1++)
-            arrayOfByte1[b1] = (byte) (p[b1] ^ q[b1]);
-        byte b = arrayOfByte1[0];
-        for (b1 = 0; arrayOfByte1[b + b1] != 0; b1++) ;
-        byte[] arrayOfByte2 = new byte[b1];
-        while (b2 < b1) {
-            arrayOfByte2[b2] = arrayOfByte1[b + b2];
-            b2++;
-        }
-        return new String(arrayOfByte2);
-    }
-
 
 }
